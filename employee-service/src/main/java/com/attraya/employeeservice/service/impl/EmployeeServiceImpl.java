@@ -6,6 +6,7 @@ import com.attraya.employeeservice.dto.EmployeeDto;
 import com.attraya.employeeservice.entity.Employee;
 import com.attraya.employeeservice.exception.ResourceNotFoundException;
 import com.attraya.employeeservice.repository.EmployeeRepository;
+import com.attraya.employeeservice.service.APIClient;
 import com.attraya.employeeservice.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -22,7 +23,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 //    private RestTemplate restTemplate;
 
-    private WebClient webClient;
+//    private WebClient webClient;
+
+    private APIClient apiClient;
 
     private ModelMapper mapper;
 
@@ -43,15 +46,20 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee", "id", employeeId));
 
+        /** Using RestTemplate */
 //        ResponseEntity<DepartmentDto> responseEntity = restTemplate.getForEntity("http://localhost:8080/api/departments/" + employee.getDepartmentCode(),
 //                DepartmentDto.class);
 //
 //        DepartmentDto departmentDto = responseEntity.getBody();
 
-        DepartmentDto departmentDto = webClient.get()
-                .uri("http://localhost:8080/api/departments/" + employee.getDepartmentCode())
-                .retrieve().bodyToMono(DepartmentDto.class)
-                .block();
+        /** Using WebClient */
+//        DepartmentDto departmentDto = webClient.get()
+//                .uri("http://localhost:8080/api/departments/" + employee.getDepartmentCode())
+//                .retrieve().bodyToMono(DepartmentDto.class)
+//                .block();
+
+        /** Using FeignClient */
+        DepartmentDto departmentDto = apiClient.getDepartment(employee.getDepartmentCode());
 
         EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
 
