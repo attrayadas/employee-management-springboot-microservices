@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
-@EnableFeignClients
+@EnableFeignClients // @EnableEurekaClient - This annotation was removed in spring cloud 2022.0.0 and provided auto-configuration
 public class EmployeeServiceApplication {
 
 	@Bean
