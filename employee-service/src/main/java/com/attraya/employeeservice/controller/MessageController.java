@@ -1,18 +1,18 @@
-package com.attraya.departmentservice.controller;
+package com.attraya.employeeservice.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RefreshScope
+@RefreshScope // After updating the config-server-repo -> POST: http://localhost:8080/actuator/busrefresh
 @RestController
 public class MessageController {
 
     @Value("${spring.boot.message}")
     private String message;
 
-    @GetMapping("message")
+    @GetMapping("/users/message")
     public String message(){
         return message;
     }
