@@ -3,6 +3,7 @@ package com.attraya.employeeservice.service.impl;
 import com.attraya.employeeservice.dto.APIResponseDto;
 import com.attraya.employeeservice.dto.DepartmentDto;
 import com.attraya.employeeservice.dto.EmployeeDto;
+import com.attraya.employeeservice.dto.OrganizationDto;
 import com.attraya.employeeservice.entity.Employee;
 import com.attraya.employeeservice.exception.ResourceNotFoundException;
 import com.attraya.employeeservice.repository.EmployeeRepository;
@@ -71,11 +72,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         /** Using FeignClient */
 //        DepartmentDto departmentDto = apiClient.getDepartment(employee.getDepartmentCode());
 
+        OrganizationDto organizationDto = webClient.get()
+                .uri("http://localhost:8083/api/organizations/" + employee.getOrganizationCode())
+                .retrieve()
+                .bodyToMono(OrganizationDto.class)
+                .block();
+
         EmployeeDto employeeDto = mapper.map(employee, EmployeeDto.class);
 
         APIResponseDto apiResponseDto = new APIResponseDto();
         apiResponseDto.setEmployee(employeeDto);
         apiResponseDto.setDepartment(departmentDto);
+        apiResponseDto.setOrganizationDto(organizationDto);
 
         return apiResponseDto;
     }
