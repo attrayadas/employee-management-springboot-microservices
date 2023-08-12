@@ -33,13 +33,13 @@ class EmployeeComponent extends Component {
                     <h3 className='text-center card-header'> View Employee Details</h3>
                     <div className='card-body'>
                         <div className='row'>
-                            <p><strong>Employee First Name: </strong> {this.state.employee.firstName}</p>
+                            <p><strong>Employee's First Name: </strong> {this.state.employee.firstName}</p>
                         </div>
                         <div className='row'>
-                            <p><strong>Employee Last Name: </strong> {this.state.employee.lastName}</p>
+                            <p><strong>Employee's Last Name: </strong> {this.state.employee.lastName}</p>
                         </div>
                         <div className='row'>
-                            <p><strong>Employee Email: </strong> {this.state.employee.email}</p>
+                            <p><strong>Employee's email: </strong> {this.state.employee.email}</p>
                         </div>
                     </div>
                     <h3 className='text-center card-header'> View Department Details</h3>
@@ -51,7 +51,7 @@ class EmployeeComponent extends Component {
                             <p><strong>Department Description: </strong> {this.state.department.departmentDescription }</p>
                         </div>
                         <div className='row'>
-                            <p><strong>Department code: </strong> {this.state.department.departmentCode }</p>
+                            <p><strong>Department Code: </strong> {this.state.department.departmentCode }</p>
                         </div>
                     </div>
                     <h3 className='text-center card-header'> View Organization Details</h3>
