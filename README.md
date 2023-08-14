@@ -87,7 +87,5 @@ Each microservice should be running on its respective port as configured in the 
 
 ## Swagger Documentation URLs
 1. Department Service Swagger Documentation: http://localhost:8080/swagger-ui.html
-
 2. Organization Service Swagger Documentation: http://localhost:8083/swagger-ui.html
-
 3. Employee Service Swagger Documentation: http://localhost:8081/swagger-ui.html
