@@ -1,11 +1,15 @@
 package com.attraya.employeeservice;
 
+import com.attraya.employeeservice.entity.Employee;
+import com.attraya.employeeservice.repository.EmployeeRepository;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -32,7 +36,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 )
 @SpringBootApplication
 @EnableFeignClients // @EnableEurekaClient - This annotation was removed in spring cloud 2022.0.0 and provided auto-configuration
-public class EmployeeServiceApplication {
+public class EmployeeServiceApplication implements CommandLineRunner {
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
 
 	@Bean
 	public ModelMapper modelMapper(){
@@ -49,10 +56,18 @@ public class EmployeeServiceApplication {
 		return WebClient.builder().build();
 	}
 
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeeServiceApplication.class, args);
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+		Employee employee = new Employee();
+		employee.setFirstName("Attraya");
+		employee.setLastName("Das");
+		employee.setEmail("attrayaghoshdas@gmail.com");
+		employee.setDepartmentCode("IT101");
+		employee.setOrganizationCode("TCS");
+		employeeRepository.save(employee);
+	}
 }
