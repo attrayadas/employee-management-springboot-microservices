@@ -62,6 +62,9 @@ public class EmployeeServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		employeeRepository.deleteAll();
+
 		Employee employee = new Employee();
 		employee.setFirstName("Attraya");
 		employee.setLastName("Das");

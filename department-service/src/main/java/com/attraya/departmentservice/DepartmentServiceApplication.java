@@ -49,6 +49,9 @@ public class DepartmentServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		departmentRepository.deleteAll();
+
 		Department department = new Department();
 		department.setDepartmentName("IT");
 		department.setDepartmentCode("IT101");

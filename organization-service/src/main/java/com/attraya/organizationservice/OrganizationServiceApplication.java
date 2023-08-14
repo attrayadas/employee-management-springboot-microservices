@@ -41,6 +41,9 @@ public class OrganizationServiceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		organizationRepository.deleteAll();
+
 		Organization organization = new Organization();
 		organization.setOrganizationName("TCS");
 		organization.setOrganizationCode("TCS");
