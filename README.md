@@ -13,25 +13,15 @@ git clone https://github.com/attrayadas/employee-management-springboot-microserv
 Create the required MySQL databases for the microservices.
 ```bash
 create database employee_db;
-```
-```bash
 create database organization_db;
-```
-```bash
 create database department_db;
 ```
 
 **3. Update MySQL Configuration**
 
-+ For the department-service, employee-service, and organization-service microservices, navigate to their respective application.properties files.
-+ Update the MySQL database username and password to match your local MySQL installation. Locate and update the following properties
-
-```bash
-spring.datasource.username=your-username
-```
-```bash
-spring.datasource.password=your-password
-```
++ For the department-service, employee-service, and organization-service microservices, navigate to their respective `application.properties` files.
++ change `spring.datasource.username` and `spring.datasource.password` as per your MySQL installation
+  
 **4. Running the Microservices**
    
 **4.1 Service Registry:**
